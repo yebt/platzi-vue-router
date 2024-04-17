@@ -9,8 +9,14 @@ const router = createRouter({
     // referencia sincrona
     { path: '/', component: HomeView }, // Sync
     { path: '/about', component: () => import('@/views/AboutView.vue') }, // Async
-    { path: '/chat', component: () => import('@/views/ChatView.vue') },
-    { path: '/chat/:chatId', component: () => import('@/views/ChatView.vue') }
+    {
+      path: '/chat',
+      component: () => import('@/views/ChatsView.vue'),
+      children: [
+        //
+        { path: ':chatId', component: () => import('@/views/ChatView.vue') }
+      ]
+    }
   ]
 })
 
