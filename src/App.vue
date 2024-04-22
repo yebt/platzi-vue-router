@@ -9,7 +9,8 @@ import { RouterLink, RouterView } from 'vue-router'
 const links: [string, string][] = [
   ['Home', 'home'],
   ['About', 'about'],
-  ['Chat', 'chats']
+  ['Chat', 'chats'],
+  ['Session', 'session']
 ]
 </script>
 
@@ -21,7 +22,6 @@ const links: [string, string][] = [
       </ul>
       <ul>
         <li v-for="link in links" :key="link[0]">
-          <RouterLink :to="{ name: link[1] }">{{ link[0] }}</RouterLink>
           <RouterLink :to="{ name: link[1] }">{{ link[0] }}</RouterLink>
         </li>
       </ul>
