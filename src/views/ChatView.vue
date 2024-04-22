@@ -1,13 +1,21 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed, ref, toRef, toRefs } from 'vue'
 
-const $route = useRoute()
 interface Message {
   id: number
   text: string
   autorId: number
 }
+const props = withDefaults(
+  defineProps<{
+    chatId: string
+  }>(),
+  {
+    chatId: ''
+  }
+)
+const { chatId } = toRefs(props)
+
 const messages = ref<Message[]>([
   { id: 1, text: 'Hello!', autorId: 2 },
   { id: 2, text: 'Whats up!', autorId: 1 },
@@ -16,7 +24,8 @@ const messages = ref<Message[]>([
 
 const filterdMessages = computed(() => {
   return messages.value.filter((msg) => {
-    return `${msg.autorId}` === $route.params.chatId
+    // return `${msg.autorId}` === $route.params.chatId
+    return `${msg.autorId}` === chatId.value
   })
 })
 </script>
