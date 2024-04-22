@@ -8,6 +8,7 @@ const router = createRouter({
   routes: [
     // referencia sincrona
     { path: '/', name: 'home', component: HomeView }, // Sync
+    { path: '/session', name: 'session', component: () => import('@/views/SessionView.vue') },
     { path: '/about', name: 'about', component: () => import('@/views/AboutView.vue') }, // Async
     {
       path: '/chat',
