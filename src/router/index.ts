@@ -1,11 +1,13 @@
 import HomeView from '@/views/HomeView.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
-
+import NotFound from '@/views/404View.vue'
 const router = createRouter({
   // modo de historial en la navegación
   history: createWebHashHistory(),
   // Lsita de rutas
   routes: [
+    { path: '/404', component: NotFound },
+    { path: '/:catchAll(.*)*', redirect: '/404' }, // redirect to 404
     // referencia sincrona
     {
       path: '/',
@@ -39,7 +41,7 @@ const router = createRouter({
       children: [
         //
         {
-          path: ':chatId',
+          path: ':chatId(\\d+)' /* Regular expression to use just numbers */,
           name: 'chat',
           component: () => import('@/views/ChatView.vue'),
           // props: true // use all params and send like props
