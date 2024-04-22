@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, ref, toRef, toRefs } from 'vue'
+import { computed, onMounted, ref, toRef, toRefs, watch, watchEffect } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 interface Message {
   id: number
@@ -16,11 +17,7 @@ const props = withDefaults(
 )
 const { chatId } = toRefs(props)
 
-const messages = ref<Message[]>([
-  { id: 1, text: 'Hello!', autorId: 2 },
-  { id: 2, text: 'Whats up!', autorId: 1 },
-  { id: 3, text: 'Hey Hey Hey!', autorId: 3 }
-])
+const messages = ref<Message[]>([])
 
 const filterdMessages = computed(() => {
   return messages.value.filter((msg) => {
@@ -28,6 +25,19 @@ const filterdMessages = computed(() => {
     return `${msg.autorId}` === chatId.value
   })
 })
+
+watch(
+  chatId,
+  (val) => {
+    console.log('Update', val)
+    messages.value = [
+      { id: 1, text: 'Hello!', autorId: 2 },
+      { id: 2, text: 'Whats up!', autorId: 1 },
+      { id: 3, text: 'Hey Hey Hey!', autorId: 3 }
+    ]
+  },
+  { immediate: true }
+)
 </script>
 <template>
   <section>
