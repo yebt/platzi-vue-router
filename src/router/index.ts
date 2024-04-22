@@ -60,10 +60,10 @@ const router = createRouter({
 
 // GUARDS
 router.beforeEach((to, from) => {
-  if (to.meta?.requiresAuth) {
-    console.log(to.path, 'Requires Auth')
-    return { name: 'session' }
-  }
+  // if (to.meta?.requiresAuth) {
+  //   console.log(to.path, 'Requires Auth')
+  //   return { name: 'session' }
+  // }
   // if (to.name === 'home') return { name: 'about' } // redirect
   // return true // next()
   // return {} // next()
