@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+// const links: [string, string][] = [
+//   ['Home', '/'],
+//   ['About', '/about'],
+//   ['Chat', '/chat']
+// ]
+// use named routes
 const links: [string, string][] = [
-  ['Home', '/'],
-  ['About', '/about'],
-  ['Chat', '/chat']
+  ['Home', 'home'],
+  ['About', 'about'],
+  ['Chat', 'chats']
 ]
 </script>
 
@@ -15,7 +21,8 @@ const links: [string, string][] = [
       </ul>
       <ul>
         <li v-for="link in links" :key="link[0]">
-          <RouterLink :to="link[1]">{{ link[0] }}</RouterLink>
+          <RouterLink :to="{ name: link[1] }">{{ link[0] }}</RouterLink>
+          <RouterLink :to="{ name: link[1] }">{{ link[0] }}</RouterLink>
         </li>
       </ul>
     </nav>

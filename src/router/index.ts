@@ -7,14 +7,15 @@ const router = createRouter({
   // Lsita de rutas
   routes: [
     // referencia sincrona
-    { path: '/', component: HomeView }, // Sync
-    { path: '/about', component: () => import('@/views/AboutView.vue') }, // Async
+    { path: '/', name: 'home', component: HomeView }, // Sync
+    { path: '/about', name: 'about', component: () => import('@/views/AboutView.vue') }, // Async
     {
       path: '/chat',
+      name: 'chats',
       component: () => import('@/views/ChatsView.vue'),
       children: [
         //
-        { path: ':chatId', component: () => import('@/views/ChatView.vue') }
+        { path: ':chatId', name: 'chat', component: () => import('@/views/ChatView.vue') }
       ]
     }
   ]
