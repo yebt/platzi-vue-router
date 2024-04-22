@@ -1,9 +1,9 @@
 import HomeView from '@/views/HomeView.vue'
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 const router = createRouter({
   // modo de historial en la navegación
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   // Lsita de rutas
   routes: [
     // referencia sincrona
