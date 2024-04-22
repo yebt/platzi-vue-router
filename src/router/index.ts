@@ -7,7 +7,8 @@ const router = createRouter({
   // Lsita de rutas
   routes: [
     // referencia sincrona
-    { path: '/', name: 'home', component: HomeView }, // Sync
+    { path: '/', name: 'home', component: HomeView, alias: ['/myhome'] }, // Sync
+    { path: '/home', redirect: '/' },
     {
       path: '/session',
       name: 'session',
