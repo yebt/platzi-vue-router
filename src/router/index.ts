@@ -1,6 +1,9 @@
 import HomeView from '@/views/HomeView.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import NotFound from '@/views/404View.vue'
+
+const stage = import.meta.env.VITE_STAGE
+
 const router = createRouter({
   // modo de historial en la navegación
   history: createWebHashHistory(),
@@ -59,6 +62,15 @@ const router = createRouter({
     }
   ]
 })
+
+// Dinamic routes
+if (stage === 'test') {
+  router.addRoute({
+    path: '/profile',
+    name: 'profile',
+    component: () => import('@/views/ProfileView.vue')
+  })
+}
 
 // GUARDS
 router.beforeEach((to, from) => {

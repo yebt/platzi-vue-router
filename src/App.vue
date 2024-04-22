@@ -6,12 +6,16 @@ import { RouterLink, RouterView } from 'vue-router'
 //   ['Chat', '/chat']
 // ]
 // use named routes
+
+const isTest = import.meta.env.VITE_STAGE === 'test'
+
 const links: [string, string][] = [
   ['Home', 'home'],
   ['About', 'about'],
   ['Chat', 'chats'],
   ['Session', 'session']
 ]
+if (isTest) links.push(['Profile', 'profile'])
 </script>
 
 <template>
