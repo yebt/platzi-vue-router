@@ -7,7 +7,15 @@ const router = createRouter({
   // Lsita de rutas
   routes: [
     // referencia sincrona
-    { path: '/', name: 'home', component: HomeView, alias: ['/myhome'] }, // Sync
+    {
+      path: '/',
+      name: 'home',
+      component: HomeView,
+      alias: ['/myhome'],
+      meta: {
+        requiresAuth: false
+      }
+    }, // Sync
     { path: '/home', redirect: '/' },
     {
       path: '/session',
@@ -42,9 +50,23 @@ const router = createRouter({
             return { chatId: route.params.chatId } // return the specific params
           }
         }
-      ]
+      ],
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })
 
+// GUARDS
+router.beforeEach((to, from) => {
+  if (to.meta?.requiresAuth) {
+    console.log(to.path, 'Requires Auth')
+    return { name: 'session' }
+  }
+  // if (to.name === 'home') return { name: 'about' } // redirect
+  // return true // next()
+  // return {} // next()
+})
+//
 export default router
